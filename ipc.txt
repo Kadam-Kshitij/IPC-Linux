@@ -1,0 +1,19 @@
+============ Pipes ============
+Used for communication between same process or interrelated processes ( parent/child )
+For two way communication create two pipes.
+
+int pipe( int pipefd[2] );								// pipefd[0] is read end and pipefd[1] is write end
+ssize_t write(int fd, const void *buf, size_t count);	// write to pipefd[1]
+ssize_t read(int fd, void *buf, size_t count);			// read on pipefd[0]
+
+============ FIFO / Named pipe ============
+Used for communicating between two non related processes.
+Open fifo file on one end for reading and other end for writing.
+For two way communication open in read write.
+
+int mkfifo(const char *pathname, mode_t mode);			// Create file on the filesystem
+
+int open(const char *pathname, int flags);				// Open file and return fd ( O_RDONLY, O_WRONLY )
+int close(int fd);										// Close fd
+
+============ Named semaphores ============
